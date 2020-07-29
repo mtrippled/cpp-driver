@@ -542,7 +542,9 @@ OpenSslContext::OpenSslContext()
     , trusted_store_(X509_STORE_new()) {
   SSL_CTX_set_cert_store(ssl_ctx_, trusted_store_);
   SSL_CTX_set_verify(ssl_ctx_, SSL_VERIFY_NONE, ssl_no_verify_callback);
-  SSL_CTX_set_max_proto_version(ssl_ctx_, TLS1_2_VERSION); // Temporary fix. Figure out TLSv1.3 issue.
+  // This is for older versions of openssl
+  SSL_CTX_set_ssl_version(ssl_ctx_, TLSv1_2_client_method());
+//  SSL_CTX_set_max_proto_version(ssl_ctx_, TLS1_2_VERSION); // Temporary fix. Figure out TLSv1.3 issue.
 }
 
 OpenSslContext::~OpenSslContext() { SSL_CTX_free(ssl_ctx_); }

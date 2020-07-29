@@ -170,9 +170,10 @@ if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang" OR
 
   # OpenSSL is deprecated on later versions of Mac OS X. The long-term solution
   # is to provide a CommonCryto implementation.
-  if (APPLE AND CASS_USE_OPENSSL)
+  #  if (APPLE AND CASS_USE_OPENSSL)
+  # this allows a deprected ssl function to support old versions.
     set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-declarations")
-  endif()
+  #  endif()
 
   if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang") 
     # Clang/Intel specific compiler options
